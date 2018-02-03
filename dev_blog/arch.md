@@ -74,6 +74,8 @@ Key tenets of Onion Architecture:
 
 [Functional architecture is Ports and Adapters by Mark Seemann](http://blog.ploeh.dk/2016/03/18/functional-architecture-is-ports-and-adapters/)
 
+[Clean Architecture with MVVMi, Architecture Components & RxJava](https://medium.com/@thereallukesimpson/clean-architecture-with-mvvmi-architecture-components-rxjava-8c5093337b43)
+
 [视频 资料收集](https://medium.com/@johnkevinmbasco/domain-models-that-are-100-ignorant-of-persistence-and-orm-unaware-d8f7a8253c7b)
 
 ### 一些实现

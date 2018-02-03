@@ -48,6 +48,14 @@ user
 
 ### 关于用例
 
+在[Organizing modules in a project](https://fsharpforfunandprofit.com/posts/recipe-part3/)
+有提到用例
+> And just above it is the code for the use cases in the application. The code in this file is where all the functions from all the other modules are “glued together” into a single function that represents a particular use case or service request. (The nearest equivalent of this in an OO design are the [“application services”](http://stackoverflow.com/questions/2268699/domain-driven-design-domain-service-application-service), which serve roughly the same purpose.)
+
+用例等价于ddd中的应用服务application-service 角色
+
+
+
 有的资料中 用例出现在领域层
 但根据用例驱动开发过程  用例是比较接近用户的  所以出现在应用层或者框架层比较合适（为了隔离框架层--框架是可被替换的属于不稳定比较强的 所以用例最好出现在应用层啦！）
 
