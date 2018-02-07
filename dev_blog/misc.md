@@ -10,12 +10,9 @@
     - [@rob_pike演讲](https://go-proverbs.github.io/)
     - [好的go项目 awesome-go](https://github.com/avelino/awesome-go)
 
-        GoesToEleven/GolangTraining
-    https://github.com/GoesToEleven/GolangTraining 
-
-
-    GoesToEleven/golang-web-dev
-    https://github.com/GoesToEleven/golang-web-dev
+- go 培训
+    - [  GoesToEleven/GolangTraining ](https://github.com/GoesToEleven/GolangTraining) 
+    - [ GoesToEleven/golang-web-dev ](https://github.com/GoesToEleven/golang-web-dev)
 
 
 - 软件过程

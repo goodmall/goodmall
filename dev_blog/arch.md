@@ -8,6 +8,12 @@
 
 - [实施微服务](http://www.infoq.com/cn/articles/basis-frameworkto-implement-micro-service)
 
+- [微服务实战（二）：使用API Gateway ](http://dockone.io/article/482)
+
+- [Building a Microservices Ecosystem with Kafka Streams and KSQL](https://www.confluent.io/blog/building-a-microservices-ecosystem-with-kafka-streams-and-ksql/)
+
+### 洋葱架构
+
 - [洋葱架构模式](http://jeffreypalermo.com/blog/the-onion-architecture-part-1/)
 
 ![架构图](./assets/images/onion_arch.png "洋葱架构")

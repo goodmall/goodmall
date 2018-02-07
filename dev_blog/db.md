@@ -10,3 +10,5 @@ https://githubreviews.com/explore/databases/popular-in-memory
 https://github.com/rain1017/memdb
 
 https://www.sohamkamani.com/blog/2017/10/18/golang-adding-database-to-web-application/
+
+https://docs.microsoft.com/en-us/azure/sql-database/sql-database-connect-query-go
