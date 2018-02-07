@@ -102,15 +102,16 @@ http://blog.csdn.net/sven_xu/article/details/46323929
 
 [池建强](http://www.infoq.com/cn/articles/cjq-ddd)
 > 领域驱动设计除了对系统架构进行了分层描述，还对对象（Object）做了明确的职责和策略划分：
-    -实体（Entities）：具备唯一ID，能够被持久化，具备业务逻辑，对应现实世界业务对象。
-    -值对象（Value objects）：不具有唯一ID，由对象的属性描述，一般为内存中的临时对象，可以用来传递参数或对实体进行补充描述。
-    -工厂（Factories）：主要用来创建实体，目前架构实践中一般采用IOC容器来实现工厂的功能。
-    -仓库（Repositories）：用来管理实体的集合，封装持久化框架。
-    -服务（Services）：为上层建筑提供可操作的接口，负责对领域对象进行调度和封装，同时可以对外提供各种形式的服务。
+- 实体（Entities）：具备唯一ID，能够被持久化，具备业务逻辑，对应现实世界业务对象。
+- 值对象（Value objects）：不具有唯一ID，由对象的属性描述，一般为内存中的临时对象，可以用来传递参数或对实体进行补充描述。
+- 工厂（Factories）：主要用来创建实体，目前架构实践中一般采用IOC容器来实现工厂的功能。
+- 仓库（Repositories）：用来管理实体的集合，封装持久化框架。
+- 服务（Services）：为上层建筑提供可操作的接口，负责对领域对象进行调度和封装，同时可以对外提供各种形式的服务。
 
 
-    >   
-     onion/
+
+~~~ref
+    onion/
     ├── cmd # cmd is for our binaries and artefacts. It is al
     │   ├── onionctl
     │   │   └── main.go #setup and dependency injection
@@ -138,3 +139,4 @@ http://blog.csdn.net/sven_xu/article/details/46323929
             ├── catalog.go
             ├── orders.go
             └── router.go
+~~~            
