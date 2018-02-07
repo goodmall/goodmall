@@ -1,8 +1,10 @@
 package usecase
 
 // NewUserInteractor interactor creator
-func NewUserInteractor() *UserInteractor{
-	return &UserInteractor{}
+// 注意该方法 在[clean-go](https://github.com/CaptainCodeman/clean-go/blob/master/engine/greeter.go#L26)
+// 项目中归属于工厂方法
+func NewUserInteractor() UserInteractor{
+	return UserInteractor{}
 }
 
 // UserInteractor allows to interact with user 

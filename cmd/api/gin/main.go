@@ -17,7 +17,8 @@ func main() {
 
 	r.GET("/userhelp", func(c *gin.Context) {
 
-		userInteractor := usecase.NewUserInteractor()
+		// userInteractor := usecase.NewUserInteractor()
+		userInteractor :=  usecase.NewUsecase(/* 依赖暂缺 */).NewUserInteractor() // usecase.NewUserInteractor()
 		response := userInteractor.Help() 
 
 		c.JSON(200, gin.H{
