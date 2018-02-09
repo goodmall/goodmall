@@ -48,6 +48,11 @@ user
 
 ## 主要参考：
 - https://github.com/CaptainCodeman/clean-go
+- https://github.com/moul/cleanarch
+- https://github.com/ManuelKiessling/go-cleanarchitecture
+
+布局：
+http://idiomaticgo.com/post/best-practice/server-project-layout/
 
 ### 关于用例
 
