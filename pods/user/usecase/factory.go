@@ -9,7 +9,7 @@ type (
 		// NewUserInteractor creates a new UserInteractor interactor
 		NewUserInteractor() UserInteractor // 此处考虑是否返回引用？
 
-		// ...  其他本包的Interractor 
+		// ...  其他本包的Interactor 
 	}
 
 	// usecaseFactory stores the state of our usecase

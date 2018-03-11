@@ -57,6 +57,11 @@ Key tenets of Onion Architecture:
 
 [Applying The Clean Architecture to Go applications](http://manuel.kiessling.net/2012/09/28/applying-the-clean-architecture-to-go-applications/)
 
+[Clean Architecture using Golang](https://medium.com/@eminetto/clean-architecture-using-golang-b63587aa5e3f)
+
+[golang-clean-archithecture](https://hackernoon.com/golang-clean-archithecture-efd6d7c43047)
+[Go (Golang) Clean Architectur](https://github.com/bxcodec/go-clean-arch)
+
 [user-manager follow the hexagonal/clean architecture](https://github.com/cgarvis/citizens)
 
 [Putting the Clean Architecture into practice](https://geeks.uniplaces.com/putting-clean-architecture-into-practice-20c47d8c76de)

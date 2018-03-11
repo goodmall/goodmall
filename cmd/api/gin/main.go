@@ -1,11 +1,10 @@
 package main
 
-import(
+import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/goodmall/goodmall/pods/user/usecase"
+	userpod "github.com/goodmall/goodmall/pods/user/adapters/api/gin"
 )
-
 
 func main() {
 	r := gin.Default()
@@ -15,16 +14,8 @@ func main() {
 		})
 	})
 
-	r.GET("/userhelp", func(c *gin.Context) {
-
-		// userInteractor := usecase.NewUserInteractor()
-		userInteractor :=  usecase.NewUsecase(/* 依赖暂缺 */).NewUserInteractor() // usecase.NewUserInteractor()
-		response := userInteractor.Help() 
-
-		c.JSON(200, gin.H{
-			"message": response,
-		})
-	})
+	// 需要先配置必要信息 注入必要依赖: userpod.Configure(config).Init()?
+	userpod.InitPod(r)
 
 	r.Run() // listen and serve on 0.0.0.0:8080
 }

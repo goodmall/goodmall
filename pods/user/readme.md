@@ -1,5 +1,28 @@
-目录结构说明
-=========
+用户模块
+==========
+
+属于整个应用的一个Pod（多module结构中的一个模块  为了避免混淆 所以采用pod）
+
+作为整个系统的一个子模块|子系统  考虑如何集成到系统整体去？
+还有自身应该需要的一些配置参数 和依赖组件如何获取
+~~~
+
+InitPod(app App , config Config , container Container)
+~~~
+
+还有就是模块间通讯方式  app---module间的通信方式 包括设计期 运行期 如何进行信息传递
+
+前端世界现在比较流行的 redux中的Store  是一个全局存储 各个组件自己拉取自己的信息 这种数据通讯的方式也比较有借鉴意义。
+
+基于事件驱动的框架 一般借用event-bus 来进行控制 和信息传递的 这种方式也可以考虑集成进来
+在分布式方式下 event-bus 也可以使用一些专业mq 比如rabbitmq 等来作为底层支持。 
+
+
+
+
+
+## 目录结构说明
+
 
 ### 传统web架构
 ~~~
@@ -34,6 +57,7 @@ user
 
 .
 ├── delivery            // Serve content via HTTP? CLI? everything related to that should be here
+目录名决定采用 adapters 
 |
 ├── domain              // Where we have our domain logic
 |
@@ -50,6 +74,9 @@ user
 - https://github.com/CaptainCodeman/clean-go
 - https://github.com/moul/cleanarch
 - https://github.com/ManuelKiessling/go-cleanarchitecture
+
+### 墙
+- [clean-architecture-using-golang](https://medium.com/@eminetto/clean-architecture-using-golang-b63587aa5e3f)
 
 布局：
 http://idiomaticgo.com/post/best-practice/server-project-layout/
@@ -114,6 +141,10 @@ http://blog.csdn.net/sven_xu/article/details/46323929
 - 服务（Services）：为上层建筑提供可操作的接口，负责对领域对象进行调度和封装，同时可以对外提供各种形式的服务。
 
 
+
+## TDD
+
+用例驱动开发的应用 用例的basic course 和 alternative course 是测试的主要方向  特别是分支流不能遗漏 确保全面覆盖
 
 ~~~ref
     onion/
