@@ -11,6 +11,8 @@ mvc
 ├── dev_blog                   # 开发资料 博客
 ├── dev_docs                   # 开发文档
 ├── pods                       # 各模块 子系统 等价其他语言中的module 比如yii-module
+├                               pod in emberjs
+├								
 ├── quickgo                    # playground 快速测试各种有用的库 
 ├── xxx                        #  
 ├── xxx                        #  

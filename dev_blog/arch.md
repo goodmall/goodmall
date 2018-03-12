@@ -74,6 +74,11 @@ Key tenets of Onion Architecture:
 [Layers, Onions, Ports, Adapters 我们都一样](http://blog.ploeh.dk/2013/12/03/layers-onions-ports-adapters-its-all-the-same/)
 
 [Cleaning up your codebase with a clean architecture](https://dev.to/barryosull/cleaning-up-your-codebase-with-a-clean-architecture)
+
+[How to Organize CLEAN ARCHITECTURE to Modular Patterns in 10 Minutes](https://hackernoon.com/applying-clean-architecture-on-web-application-with-modular-pattern-7b11f1b89011)
+用例图不错！
+
+
 >
     在传统mvc架构中 某个action中的代码 感觉就像混合了多个国家人的讨论会 要不断的切换不同方言对不同国别的人交谈
 > Storing and retrieving things is clearly the repository pattern. So let's create two new application concepts, UserRepository and ImageRepository, and we'll implement them as interfaces.    
