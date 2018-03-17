@@ -12,14 +12,15 @@ type TodoRepo interface {
 	FindById(id int) Todo
 
 	//
-	Store(td Todo)
-	Remove(td Todo)
+	Store(td *Todo) error
+	Remove(td *Todo)
 
 	// ## Extra Behavior
 	// Size()
 
 	// ## Query
-	Query(spec Specification)
+	// Query(spec Specification)
+	Query(criteria Query)
 }
 
 /**

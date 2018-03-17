@@ -9,7 +9,7 @@ import (
 // NewTodoInteractor interactor creator
 // 注意该方法 在[clean-go](https://github.com/CaptainCodeman/clean-go/blob/master/engine/greeter.go#L26)
 // 项目中归属于工厂方法
-func NewTodoInteractor(todoRepo demo.Todo, eb EventBus.Bus) demo.TodoInteractor {
+func NewTodoInteractor(todoRepo demo.TodoRepo, eb EventBus.Bus) demo.TodoInteractor {
 	return &todoInteractor{
 		TodoRepo: todoRepo,
 		EventBus: eb,
@@ -27,11 +27,15 @@ func (interactor *todoInteractor) Help() string {
 	return "hi this is help method of TodoInteractor!"
 }
 
-func (interactor *todoInteractor) GetTodo(id int) (demo.Todo, error) {
-	return demo.Todo{Description: "hi funny!"}, nil
+func (interactor *todoInteractor) Todo(id int) (*demo.Todo, error) {
+	return &demo.Todo{Description: "hi funny!"}, nil
 }
+func (interactor *todoInteractor) Todos() ([]*demo.Todo, error) {
+	return []*demo.Todo{}, nil
+}
+
 func (interactor *todoInteractor) CreateTodo(td *demo.Todo) error {
-	return interactor.TodoRepo.CreateTodo(td)
+	return interactor.TodoRepo.Store(td)
 }
 
 func (interactor *todoInteractor) UpdateTodo(td *demo.Todo) error {

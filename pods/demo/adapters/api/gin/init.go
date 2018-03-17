@@ -8,6 +8,7 @@ import (
 
 	_ "github.com/asaskevich/EventBus"
 	"github.com/goodmall/goodmall/app"
+	"github.com/goodmall/goodmall/pods/demo/infra/repo/tiedot"
 	"github.com/goodmall/goodmall/pods/demo/usecase"
 )
 
@@ -16,6 +17,8 @@ import (
 func InitPod(engine *gin.Engine, env app.Env) {
 
 	r := engine
+
+	tr := tiedot.NewTodoRepo()
 
 	r.GET("/todo", func(c *gin.Context) {
 		id := c.Query("id")
@@ -28,8 +31,8 @@ func InitPod(engine *gin.Engine, env app.Env) {
 			return
 		}
 
-		ii := usecase.NewTodoInteractor()
-		response, _ := ii.GetTodo(id2)
+		ii := usecase.NewTodoInteractor(tr, env.EventBus)
+		response, _ := ii.Todo(id2)
 
 		c.JSON(200, gin.H{
 			"message": response,

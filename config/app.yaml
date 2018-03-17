@@ -1,7 +1,7 @@
 # The Data Source Name for the database
 # Make sure you override this in production with the environment variable: RESTFUL_DSN
 # dsn: "postgres://postgres:postgres@127.0.0.1:5432/goodmall?sslmode=disable"
-dsn: "mysql://yiqing:yiqing@127.0.0.1:3306/aheadmall?sslmode=disable"
+dsn: "mysql://yiqing:yiqing@localhost:3306/aheadmall?sslmode=disable"
 
 # These are secret keys used for JWT signing and verification.
 # Make sure you override these keys in production by the following environment variables:

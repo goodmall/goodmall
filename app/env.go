@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/asaskevich/EventBus"
 	"github.com/go-ozzo/ozzo-dbx"
 )
 
@@ -12,5 +13,7 @@ import (
 // Request-scoped context: 这个用法 可以参考强哥的 https://github.com/qiangxue/golang-restful-starter-kit/blob/master/app/scope.go
 type Env struct {
 	// db models.Datastore
-	db *dbx.DB
+	Db *dbx.DB
+	// 事件总线
+	EventBus EventBus.Bus
 }

@@ -7,6 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"github.com/asaskevich/EventBus"
+	"github.com/go-ozzo/ozzo-dbx"
+
 	// "github.com/goodmall/goodmall/cmd/api/gin/app"
 	"github.com/goodmall/goodmall/app"
 
@@ -30,15 +33,22 @@ func main() {
 	//     ##  实例化系统级组件
 
 	// create the logger
-	logger := logrus.New()
+	// logger := logrus.New()
 
 	// connect to the database
-	db, err := dbx.MustOpen("mysql", app.Config.DSN)
+	// db, err := dbx.MustOpen("mysql", app.Config.DSN)
+	db, err := dbx.Open("mysql", "root:@/aheadmall")
 	if err != nil {
 		panic(err)
 	}
+
+	// create event bus
+	bus := EventBus.New()
+	// FIXME 注意到在app/env.go 中导入的依赖文件这里还要导入一遍 有点累赘 可以考虑吧系统组件的实例化功能 提取到env去这样避免冗余
+
 	env := app.Env{
-		db: db,
+		Db:       db,
+		EventBus: bus,
 	}
 
 	//========================================================================>|
@@ -60,7 +70,7 @@ func main() {
 	// 将系统配置拷贝到模块配置中 模块配置只需要声明需要的字段 类似于模式匹配
 	copier.Copy(&demoPod.Config, &app.Config)
 	fmt.Print(demoPod)
-	demoPodHome.InitPod(r)
+	demoPodHome.InitPod(r, env)
 
 	//========================================================================>|
 	r.Run() // listen and serve on 0.0.0.0:8080
