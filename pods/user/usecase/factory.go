@@ -38,6 +38,7 @@ func NewUsecase( /*s StorageFactory */ ) UsecaseFactory {
 //    这种方法 感觉上使得interactor不知道存在工厂 所以这种方法感觉优于方法一
 func (uf *usecaseFactory) NewUserInteractor() UserInteractor {
 	// return NewUserInteractor()  // 代理到常规构造器实现
+
 	return UserInteractor{
 		userRepo: mysql.NewUserRepository(),
 	}

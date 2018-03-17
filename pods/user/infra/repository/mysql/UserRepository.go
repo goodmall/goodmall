@@ -44,7 +44,7 @@ func (userRepo *userRepository) FindByUsername(username string) (*domain.User,
 
 	var user domain.User
 	// create a new query
-	db.Select("username").
+	db.Select("*").
 		From("tbl_user").
 		// Where(dbx.Like("name", "Charles")).
 		Where(dbx.HashExp{"username": username}).

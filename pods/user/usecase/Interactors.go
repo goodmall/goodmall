@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"github.com/goodmall/goodmall/pods/user"
 	"github.com/goodmall/goodmall/pods/user/domain"
 	// "github.com/goodmall/goodmall/pods/user/domain"
 )
@@ -13,7 +14,10 @@ func NewUserInteractor() UserInteractor {
 }
 
 // UserInteractor allows to interact with user
+// FIXME 此处用例也可以定义为接口 外层也可以使用接口类型 这样增加可替换性 和易测试性
 type UserInteractor struct {
+	userPod user.UserPod
+
 	userRepo domain.UserRepository
 }
 
@@ -23,7 +27,9 @@ func (interactor *UserInteractor) FindByUsername(username string) (*domain.User,
 }
 
 // Register register a new user in system with the given name
-func (interactor *UserInteractor) Register(username string) error {
+func (interactor *UserInteractor) Register(username string, password string) error {
+
+	// 触发领域事件  UserCreated
 	return nil
 }
 

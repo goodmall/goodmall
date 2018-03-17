@@ -9,11 +9,42 @@
     - [演讲](http://go-lang.cat-v.org/talks/)
     - [@rob_pike演讲](https://go-proverbs.github.io/)
     - [好的go项目 awesome-go](https://github.com/avelino/awesome-go)
+	
+	- [https://blog.learngoprogramming.com](https://blog.learngoprogramming.com)
 
 - go 培训
     - [  GoesToEleven/GolangTraining ](https://github.com/GoesToEleven/GolangTraining) 
     - [ GoesToEleven/golang-web-dev ](https://github.com/GoesToEleven/golang-web-dev)
 
+
+## 专题
+
+##  应用结构
+
+https://medium.com/@benbjohnson/structuring-applications-in-go-3b04be4ff091
+
+https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1
+
+### 函数
+https://blog.learngoprogramming.com/go-functions-overview-anonymous-closures-higher-order-deferred-concurrent-6799008dde7b
+
+### 常量
+https://blog.learngoprogramming.com/golang-const-type-enums-iota-bc4befd096d3
+
+
+###
+
+
+### db
+
+http://www.alexedwards.net/blog/organising-database-access
+
+### mock
+https://github.com/golang/mock
+
+### 测试
+
+https://github.com/tsenart/vegeta
 
 - 软件过程
 

@@ -10,6 +10,11 @@ import (
 
 // InitPod 集成入口  系统应用（SysApp）可用通过此方法把该模块的功能集成到系统总体版图去
 
+//  TODO 重构为类型的方法 NewUserPod( /* 依赖传入 */ ).Init()
+//       pod := NewUserPod()
+//       pod.Xxx = Xxx
+//       pod.Init()
+
 func InitPod(engine *gin.Engine) {
 
 	r := engine

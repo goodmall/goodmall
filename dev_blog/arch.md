@@ -104,6 +104,7 @@ Key tenets of Onion Architecture:
 - [java ](https://github.com/xpmatteo/birthday-greetings-kata)
 
 - [辅助实现](https://github.com/dadamssg/commandbus)
+- [事件总线](https://github.com/asaskevich/EventBus)
 
 ### 涉及到 hexagonal/onoin/clean architecture 的书：
 
