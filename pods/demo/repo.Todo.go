@@ -20,7 +20,8 @@ type TodoRepo interface {
 
 	// ## Query
 	// Query(spec Specification)
-	Query(criteria Query)
+	// 实现方法 可以参考 https://www.sohamkamani.com/blog/2017/10/18/golang-adding-database-to-web-application/
+	Query(criteria Query) ([]*Todo, error)
 }
 
 /**

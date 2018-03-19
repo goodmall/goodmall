@@ -17,3 +17,6 @@
 - https://medium.com/wtf-dial/wtf-dial-domain-model-9655cd523182
 
 - https://github.com/benbjohnson/wtf
+
+- https://hackernoon.com/basic-monorepo-design-in-go-e9ba1cb8e4e6
+gogs项目结构

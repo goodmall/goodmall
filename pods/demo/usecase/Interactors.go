@@ -31,7 +31,9 @@ func (interactor *todoInteractor) Todo(id int) (*demo.Todo, error) {
 	return &demo.Todo{Description: "hi funny!"}, nil
 }
 func (interactor *todoInteractor) Todos() ([]*demo.Todo, error) {
-	return []*demo.Todo{}, nil
+
+	return interactor.TodoRepo.Query(demo.Query{})
+	// return []*demo.Todo{}, nil
 }
 
 func (interactor *todoInteractor) CreateTodo(td *demo.Todo) error {

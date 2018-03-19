@@ -32,7 +32,8 @@ https://blog.learngoprogramming.com/go-functions-overview-anonymous-closures-hig
 https://blog.learngoprogramming.com/golang-const-type-enums-iota-bc4befd096d3
 
 
-###
+### 命名
+https://blog.learngoprogramming.com/code-organization-tips-with-packages-d30de0d11f46
 
 
 ### db
@@ -49,3 +50,8 @@ https://github.com/tsenart/vegeta
 - 软件过程
 
 [xp](http://www.extremeprogramming.org/more.html)    
+
+
+## 设计模式
+
+http://blog.ralch.com/categories/design-patterns/

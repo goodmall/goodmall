@@ -2,7 +2,7 @@ package gin
 
 import (
 	_ "fmt"
-	"strconv"
+	_ "strconv"
 
 	"github.com/gin-gonic/gin"
 
@@ -19,26 +19,34 @@ func InitPod(engine *gin.Engine, env app.Env) {
 	r := engine
 
 	tr := tiedot.NewTodoRepo()
+	ti := usecase.NewTodoInteractor(tr, env.EventBus)
 
-	r.GET("/todo", func(c *gin.Context) {
-		id := c.Query("id")
+	th := TodoHandler{ts: ti}
+	// var _ TodoHandler = th
 
-		id2, err := strconv.Atoi(id)
-		if err != nil {
+	r.GET("/todo", th.GetTodo)
+	r.POST("/todo", th.CreateTodo)
+	r.POST("/todos", th.Todos)
+	/*
+		r.GET("/todo", func(c *gin.Context) {
+			id := c.Query("id")
+
+			id2, err := strconv.Atoi(id)
+			if err != nil {
+				c.JSON(200, gin.H{
+					"error": "not a number",
+				})
+				return
+			}
+
+			ii := usecase.NewTodoInteractor(tr, env.EventBus)
+			response, _ := ii.Todo(id2)
+
 			c.JSON(200, gin.H{
-				"error": "not a number",
+				"message": response,
 			})
-			return
-		}
 
-		ii := usecase.NewTodoInteractor(tr, env.EventBus)
-		response, _ := ii.Todo(id2)
-
-		c.JSON(200, gin.H{
-			"message": response,
-		})
-
-	})
+		}) */
 
 	// TODO  我们可以在初始化方法中 触发一些事件 供内部钩子注册
 
