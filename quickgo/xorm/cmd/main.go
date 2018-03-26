@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"reflect"
+	"time"
 )
 
 // import "github.com/tonnerre/golang-pretty"
@@ -36,7 +38,41 @@ type MyTodo struct {
 
 func main() {
 	insertObj()
+	// getBeanId()
 }
+
+func getBeanId() {
+	log.Println("<< ==================enter getBeanID ======================")
+	defer log.Println(" ==================end getBeanID ======================>>")
+	engine, err := xorm.NewEngine("mysql", "root:@/test?charset=utf8")
+	checkErr(err)
+	engine.Ping()
+
+	arg := Todo{
+		Id: 10,
+	}
+
+	tbl := engine.TableInfo(arg)
+	pks := tbl.PKColumns()
+	// spew.Dump(pks)
+
+	// 获取主键们
+	for _, pkCol := range pks {
+		nm := pkCol.Name
+
+		log.Println("table pk name is :", nm)
+		log.Println("field name is :", pkCol.FieldName)
+
+		v := reflect.ValueOf(arg)
+		log.Println(" id value of the struct is : ", v.FieldByName(pkCol.FieldName))
+		log.Println(" id value of the struct is : ", v.FieldByName(pkCol.FieldName).Int())
+		log.Println(" id value of the struct is : ", v.FieldByName(pkCol.FieldName).Interface())
+
+		// engine.ID(v.FieldByName(pkCol.FieldName).Int()).Delete( reflect.Zero(reflect.TypeOf(arg)).Interface())
+	}
+
+}
+
 func basicWork() {
 	var err error
 	engine, err = xorm.NewEngine("mysql", "root:@/test?charset=utf8")
@@ -93,12 +129,19 @@ func insertObj() {
 	engine.ShowSQL(true)
 
 	uow := myorm.NewUintOfWork(engine)
-	uow.RegisterNew(td)
-	uow.RegisterNew(td)
-	uow.RegisterNew(td)
-	uow.RegisterNew(td)
+	uow.RegisterNew(&td)
+
+	td.Name = "yes this is updated !"
+
+	uow.RegisterDirty(&td)
+
 	uow.Commit()
 
+	time.Sleep(10 * time.Second)
+	log.Println("10 sencond passed ! the record will be deleted now")
+	uow.RegisterDeleted(&td)
+
+	uow.Commit()
 }
 
 func checkErr(err error) {
