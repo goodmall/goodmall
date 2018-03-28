@@ -8,7 +8,9 @@ import (
 
 	_ "github.com/asaskevich/EventBus"
 	"github.com/goodmall/goodmall/app"
-	"github.com/goodmall/goodmall/pods/demo/infra/repo/tiedot"
+	//"github.com/goodmall/goodmall/pods/demo/infra/repo/bolthold"
+	"github.com/goodmall/goodmall/pods/demo/infra/repo/ql"
+	//	"github.com/goodmall/goodmall/pods/demo/infra/repo/tiedot"
 	"github.com/goodmall/goodmall/pods/demo/usecase"
 )
 
@@ -18,7 +20,7 @@ func InitPod(engine *gin.Engine, env app.Env) {
 
 	r := engine
 
-	tr := tiedot.NewTodoRepo()
+	tr := ql.NewTodoRepo() // bolthold.NewTodoRepo() // tiedot.NewTodoRepo()
 	ti := usecase.NewTodoInteractor(tr, env.EventBus)
 
 	th := TodoHandler{ts: ti}
@@ -26,7 +28,8 @@ func InitPod(engine *gin.Engine, env app.Env) {
 
 	r.GET("/todo", th.GetTodo)
 	r.POST("/todo", th.CreateTodo)
-	r.POST("/todos", th.Todos)
+	r.GET("/todos", th.Todos)
+	r.DELETE("/todo", th.DeleteTodo)
 	/*
 		r.GET("/todo", func(c *gin.Context) {
 			id := c.Query("id")

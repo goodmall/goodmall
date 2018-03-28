@@ -1,0 +1,19 @@
+package migrations
+
+// 此方案行不通！
+
+import (
+	"database/sql"
+)
+
+/**
+* 我们可以等外部 调用InitDb方法来注入模块所需的数据库
+*
+* 然后迁移文件中 来使用这个特定的变量
+**/
+var db *sql.DB
+
+func InitDB( /* db *sql.DB*/ ) {
+	//	db = db
+	println(" init the specified db in demo migrations dir")
+}

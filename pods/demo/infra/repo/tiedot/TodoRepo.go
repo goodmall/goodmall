@@ -17,6 +17,9 @@ import (
 	"github.com/goodmall/goodmall/pods/demo"
 )
 
+// Ensure 接口被实现了.
+var _ demo.TodoRepo = &todoRepo{}
+
 type todoRepo struct {
 	db *db.DB
 }
@@ -55,9 +58,25 @@ func NewTodoRepo() demo.TodoRepo {
 	return &todoRepo{db: myDB}
 }
 
-func (todoRepo *todoRepo) Load(id int) (demo.Todo, error) {
-	fmt.Print("come here todoRepo:create")
-	return demo.Todo{}, nil
+func (todoRepo *todoRepo) Load(id int) (*demo.Todo, error) {
+	// fmt.Print("come here todoRepo:create")
+	td := demo.Todo{}
+	col := todoRepo.db.Use("todos")
+	// Read document
+	// id = 3320033619915385300
+	readBack, err := col.Read(id)
+	if err != nil {
+		fmt.Println(readBack)
+
+		// panic(err)
+		return &td, err
+	}
+	err2 := mapstructure.Decode(readBack, &td)
+	if err2 != nil {
+		panic(err2)
+	}
+	return &td, nil
+	// return &demo.Todo{}, nil
 }
 func (todoRepo *todoRepo) FindById(id int) demo.Todo {
 
@@ -84,7 +103,12 @@ func (todoRepo *todoRepo) Store(td *demo.Todo) error {
 	fmt.Println(docID)
 	return nil
 }
-func (todoRepo *todoRepo) Remove(td *demo.Todo) {}
+func (todoRepo *todoRepo) Remove(id int) error {
+
+	col := todoRepo.db.Use("todos")
+	// Delete document
+	return col.Delete(id)
+}
 
 // ## Extra Behavior
 // Size()
@@ -94,7 +118,7 @@ func (todoRepo *todoRepo) Remove(td *demo.Todo) {}
 func (todoRepo *todoRepo) Query(criteria demo.Query) ([]*demo.Todo, error) {
 
 	todos := todoRepo.db.Use("todos")
-
+	//todos.ApproxDocCount()
 	var query interface{}
 	// json.Unmarshal([]byte(`[{"eq": "New Go release", "in": ["Title"]}, {"eq": "slackware.com", "in": ["Source"]}]`), &query)
 

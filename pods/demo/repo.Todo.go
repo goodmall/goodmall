@@ -8,12 +8,13 @@ package demo
 type TodoRepo interface {
 
 	// ##  finder methods (latestItems(since) )
-	Load(id int) (Todo, error)
-	FindById(id int) Todo
+	Load(id int) (*Todo, error)
+	// FindById(id int) Todo  // FindByXxx 是DAO式接口特征 Repository不建议用 一般只需要一个Query就够了
 
 	//
 	Store(td *Todo) error
-	Remove(td *Todo)
+	// Remove(td *Todo)
+	Remove(id int) error
 
 	// ## Extra Behavior
 	// Size()

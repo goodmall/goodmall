@@ -98,6 +98,7 @@ Key tenets of Onion Architecture:
 
 - [go cleanarch](https://github.com/moul/cleanarch)
 - [clean-go](https://github.com/CaptainCodeman/clean-go)
+- [go-cleanarch](https://github.com/roblaszczak/go-cleanarch)
 - [user management and authentication clean-go](https://github.com/cgarvis/citizens)
 - [go-cleanarchitecture](https://github.com/manuelkiessling/go-cleanarchitecture)
 

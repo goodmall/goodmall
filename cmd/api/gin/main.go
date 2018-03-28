@@ -69,7 +69,7 @@ func main() {
 	demoPod := demo.NewDemoPod()
 	// 将系统配置拷贝到模块配置中 模块配置只需要声明需要的字段 类似于模式匹配
 	copier.Copy(&demoPod.Config, &app.Config)
-	fmt.Print(demoPod)
+	// fmt.Print(demoPod)
 	demoPodHome.InitPod(r, env)
 
 	//========================================================================>|

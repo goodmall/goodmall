@@ -28,7 +28,8 @@ func (interactor *todoInteractor) Help() string {
 }
 
 func (interactor *todoInteractor) Todo(id int) (*demo.Todo, error) {
-	return &demo.Todo{Description: "hi funny!"}, nil
+	// return &demo.Todo{Description: "hi funny!"}, nil
+	return interactor.TodoRepo.Load(id)
 }
 func (interactor *todoInteractor) Todos() ([]*demo.Todo, error) {
 
@@ -44,5 +45,5 @@ func (interactor *todoInteractor) UpdateTodo(td *demo.Todo) error {
 	return nil
 }
 func (interactor *todoInteractor) DeleteTodo(id int) error {
-	return nil
+	return interactor.TodoRepo.Remove(id)
 }

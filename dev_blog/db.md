@@ -16,3 +16,6 @@ https://docs.microsoft.com/en-us/azure/sql-database/sql-database-connect-query-g
 http://www.alexedwards.net/blog/organising-database-access
 
 http://go-database-sql.org/
+
+### gorm 处理json
+http://www.booneputney.com/development/gorm-golang-jsonb-value-copy/

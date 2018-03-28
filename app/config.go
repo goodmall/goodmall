@@ -1,10 +1,11 @@
 package app
 
 import (
+	"database/sql"
 	"fmt"
 
-	"github.com/spf13/viper"
 	"github.com/go-ozzo/ozzo-validation"
+	"github.com/spf13/viper"
 )
 
 // Config stores the application-wide configurations
@@ -12,23 +13,26 @@ var Config appConfig
 
 type appConfig struct {
 	// the path to the error message file. Defaults to "config/errors.yaml"
-	ErrorFile          string `mapstructure:"error_file"`
+	ErrorFile string `mapstructure:"error_file"`
 	// the server port. Defaults to 8080
-	ServerPort         int    `mapstructure:"server_port"`
+	ServerPort int `mapstructure:"server_port"`
 	// the data source name (DSN) for connecting to the database. required.
-	DSN                string `mapstructure:"dsn"`
+	DSN string `mapstructure:"dsn"`
 	// the signing method for JWT. Defaults to "HS256"
-	JWTSigningMethod   string `mapstructure:"jwt_signing_method"`
+	JWTSigningMethod string `mapstructure:"jwt_signing_method"`
 	// JWT signing key. required.
-	JWTSigningKey      string `mapstructure:"jwt_signing_key"`
+	JWTSigningKey string `mapstructure:"jwt_signing_key"`
 	// JWT verification key. required.
 	JWTVerificationKey string `mapstructure:"jwt_verification_key"`
+
+	DSNMysql string `mapstructure:"dsn_mysql"`
 }
 
 func (config appConfig) Validate() error {
 	return validation.ValidateStruct(&config,
 		validation.Field(&config.DSN, validation.Required),
 		validation.Field(&config.JWTSigningKey, validation.Required),
+		validation.Field(&config.DSNMysql, validation.Required),
 		validation.Field(&config.JWTVerificationKey, validation.Required),
 	)
 }
@@ -56,3 +60,17 @@ func LoadConfig(configPaths ...string) error {
 	}
 	return Config.Validate()
 }
+
+// --------------------------------------------------------------------------++|
+// MysqlDB return a mysql db connection
+// FIXME 如果不是复用 那么还是叫 NewMysqlDB 好点
+func (conf *appConfig) MysqlDB() *sql.DB {
+	db, err := sql.Open("mysql", conf.DSNMysql)
+	if err != nil {
+		panic(err)
+	}
+	// TODO 是否使用同一个呢？ 还是调用一次open一个？
+	return db
+}
+
+// --------------------------------------------------------------------------++|

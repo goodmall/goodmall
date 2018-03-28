@@ -3,6 +3,10 @@
 # dsn: "postgres://postgres:postgres@127.0.0.1:5432/goodmall?sslmode=disable"
 dsn: "mysql://yiqing:yiqing@localhost:3306/aheadmall?sslmode=disable"
 
+# dsn_mysql mysql连接串 dsn这个名字可能不合适 
+#  user:pass@tcp(127.0.0.1:3306)/samples?charset=utf8&parseTime=True&loc=Local
+dsn_mysql: "root:@tcp(127.0.0.1:3306)/test?charset=utf8&parseTime=True"
+
 # These are secret keys used for JWT signing and verification.
 # Make sure you override these keys in production by the following environment variables:
 #   RESTFUL_JWT_VERIFICATION_KEY

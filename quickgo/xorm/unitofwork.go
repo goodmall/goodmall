@@ -130,6 +130,7 @@ func (uow *unitOfWork) idOfStruct(obj interface{}) interface{} {
 }
 
 func (uow *unitOfWork) zeroValueOf(obj interface{}) interface{} {
+	// TODO check obj type , when it is reflect.Ptr will need another special handling
 	return reflect.Zero(reflect.TypeOf(obj)).Interface()
 }
 

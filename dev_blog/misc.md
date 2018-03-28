@@ -10,20 +10,39 @@
     - [@rob_pike演讲](https://go-proverbs.github.io/)
     - [好的go项目 awesome-go](https://github.com/avelino/awesome-go)
 	
+	- [gopheracademy](https://blog.gopheracademy.com/)
+	- [golangbot](https://golangbot.com/)
+	
 	- [https://blog.learngoprogramming.com](https://blog.learngoprogramming.com)
+	- [https://www.dotnetperls.com/slice-go](https://www.dotnetperls.com/)
+	- [golang-basic](http://golang-basic.blogspot.com/)
+	
 
 - go 培训
     - [  GoesToEleven/GolangTraining ](https://github.com/GoesToEleven/GolangTraining) 
     - [ GoesToEleven/golang-web-dev ](https://github.com/GoesToEleven/golang-web-dev)
+	- [Go Training Class Material](https://github.com/ardanlabs/gotraining)
 
+- 知名博主
+	- [gb](https://dave.cheney.net/)
+	- [FLAVIO COPES](https://flaviocopes.com/go-list-files/)
+	- [uniplaces](https://geeks.uniplaces.com/)
+	- [Peter Bourgon](http://howistart.org/posts/go/1/index.html)
+	- [justforfunc](https://github.com/campoy/justforfunc)
 
 ## 专题
 
-##  应用结构
+###  应用结构
 
 https://medium.com/@benbjohnson/structuring-applications-in-go-3b04be4ff091
 
 https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1
+
+https://www.ardanlabs.com/blog/2017/02/package-oriented-design.html
+
+https://www.ribice.ba/go-restful-starter-kit/
+
+https://blog.gopheracademy.com/advent-2015/vendor-folder/
 
 ### 函数
 https://blog.learngoprogramming.com/go-functions-overview-anonymous-closures-higher-order-deferred-concurrent-6799008dde7b
@@ -35,6 +54,9 @@ https://blog.learngoprogramming.com/golang-const-type-enums-iota-bc4befd096d3
 ### 命名
 https://blog.learngoprogramming.com/code-organization-tips-with-packages-d30de0d11f46
 
+### 反射
+https://blog.golang.org/laws-of-reflection
+
 
 ### db
 
@@ -42,6 +64,11 @@ http://www.alexedwards.net/blog/organising-database-access
 
 ### mock
 https://github.com/golang/mock
+
+## search
+
+https://github.com/go-ego/riot
+[wukong](https://github.com/huichen/wukong)
 
 ### 测试
 

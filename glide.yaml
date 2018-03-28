@@ -18,3 +18,4 @@ import:
 - package: github.com/dgrijalva/jwt-go
   version: ^3.0
 - package: github.com/HouzuoGuo/tiedot
+- package: github.com/timshannon/bolthold
