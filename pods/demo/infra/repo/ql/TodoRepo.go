@@ -20,6 +20,7 @@ import (
 	"upper.io/db.v3/lib/sqlbuilder"
 	"upper.io/db.v3/ql"
 
+	"github.com/goodmall/goodmall/base"
 	"github.com/goodmall/goodmall/pods/demo"
 )
 
@@ -164,7 +165,7 @@ func (todoRepo *todoRepo) Remove(id int) error {
 
 // ## Query
 // Query(spec Specification)
-func (todoRepo *todoRepo) Query(criteria demo.Query) ([]*demo.Todo, error) {
+func (todoRepo *todoRepo) Query(criteria base.Query) ([]*demo.Todo, error) {
 	var returns []*demo.Todo
 	/*
 

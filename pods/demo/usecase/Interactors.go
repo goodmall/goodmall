@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"github.com/goodmall/goodmall/base"
 	"github.com/goodmall/goodmall/pods/demo"
 	// "github.com/goodmall/goodmall/pods/user/domain"
 	"github.com/asaskevich/EventBus"
@@ -33,7 +34,7 @@ func (interactor *todoInteractor) Todo(id int) (*demo.Todo, error) {
 }
 func (interactor *todoInteractor) Todos() ([]*demo.Todo, error) {
 
-	return interactor.TodoRepo.Query(demo.Query{})
+	return interactor.TodoRepo.Query(base.Query{})
 	// return []*demo.Todo{}, nil
 }
 

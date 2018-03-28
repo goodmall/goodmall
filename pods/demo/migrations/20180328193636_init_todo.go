@@ -2,6 +2,7 @@ package migration
 
 import (
 	"database/sql"
+	"reflect"
 	"time"
 
 	//	"github.com/pressly/goose"
@@ -47,9 +48,15 @@ type User2 struct {
 	IgnoreMe     int     `gorm:"-"`               // ignore this field
 }
 
+// 确保里面的代码只执行一次哦
 func InitContext() {
 	// SEARCH how-to-know-if-a-variable-of-arbitrary-type-is-zero-in-golang
 	if _isInited == true {
+		return
+	}
+	// 判断是否赋值了 ： https://github.com/golang/go/issues/7501
+	if !reflect.ValueOf(db).IsNil() {
+
 		return
 	}
 

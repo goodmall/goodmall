@@ -1,5 +1,9 @@
 package demo
 
+import (
+	"github.com/goodmall/goodmall/base"
+)
+
 // TodoRepo manager the entity Todo as a collection
 // （Collection-oriented Repositories(add addAll remove removeAll ...)
 //  |Persisted-Oriented Repositories()）
@@ -22,7 +26,7 @@ type TodoRepo interface {
 	// ## Query
 	// Query(spec Specification)
 	// 实现方法 可以参考 https://www.sohamkamani.com/blog/2017/10/18/golang-adding-database-to-web-application/
-	Query(criteria Query) ([]*Todo, error)
+	Query(criteria base.Query) ([]*Todo, error)
 }
 
 /**

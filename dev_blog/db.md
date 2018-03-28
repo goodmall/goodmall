@@ -19,3 +19,5 @@ http://go-database-sql.org/
 
 ### gorm 处理json
 http://www.booneputney.com/development/gorm-golang-jsonb-value-copy/
+
+http://go-database-sql.org/accessing.html
