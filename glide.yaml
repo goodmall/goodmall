@@ -19,3 +19,7 @@ import:
   version: ^3.0
 - package: github.com/HouzuoGuo/tiedot
 - package: github.com/timshannon/bolthold
+
+- package: github.com/gavv/httpexpect
+- package: github.com/gorilla/schema
+

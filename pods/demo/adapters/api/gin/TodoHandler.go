@@ -11,6 +11,7 @@ import (
 	"github.com/goodmall/goodmall/pods/demo"
 	// "github.com/goodmall/goodmall/pods/demo/usecase"
 	// "github.com/goodmall/goodmall/pods/demo/usecase"
+	"github.com/goodmall/goodmall/base"
 )
 
 // TODO  to be continue
@@ -19,9 +20,10 @@ type TodoHandler struct {
 	ts demo.TodoInteractor
 }
 
-func (tdh *TodoHandler) Todos(c *gin.Context) {
-
-	todos, err := tdh.ts.Todos()
+func (tdh *TodoHandler) Query(c *gin.Context) {
+	// c.Request.
+	//  借鉴yii的 其实query 可以是一个模型 跟常规model类似 或者就更泛化点  map[string]string
+	todos, err := tdh.ts.Query(base.Query{})
 	if err != nil {
 		panic(err)
 	}
@@ -30,7 +32,7 @@ func (tdh *TodoHandler) Todos(c *gin.Context) {
 
 }
 
-func (tdh *TodoHandler) CreateTodo(c *gin.Context) {
+func (tdh *TodoHandler) Create(c *gin.Context) {
 	//c.JSON(200, "create")
 
 	var todo demo.Todo
@@ -38,17 +40,18 @@ func (tdh *TodoHandler) CreateTodo(c *gin.Context) {
 	c.Bind(&todo)
 
 	todo.Status = "creating" // demo.TodoStatus
-	todo.Created = int32(time.Now().Unix())
+	//	todo.Created = int32(time.Now().Unix())
+	todo.Created = int(time.Now().Unix())
 
 	// tdh.db.Save(&todo)
-	tdh.ts.CreateTodo(&todo)
+	tdh.ts.Create(&todo)
 	c.JSON(201, todo)
 	// fmt.Println(c.Request)
 	fmt.Println("yaya")
 
 }
 
-func (tdh *TodoHandler) GetTodo(c *gin.Context) {
+func (tdh *TodoHandler) Get(c *gin.Context) {
 	// 注意Params 和 Query的 区别
 	// idStr := c.Params.ByName("id")
 	idStr := c.Query("id")
@@ -57,7 +60,7 @@ func (tdh *TodoHandler) GetTodo(c *gin.Context) {
 
 	var todo *demo.Todo
 
-	todo, err := tdh.ts.Todo(idInt)
+	todo, err := tdh.ts.Get(idInt)
 	if err != nil {
 		c.JSON(404, gin.H{"error": "not found " + strconv.Itoa(idInt)})
 		return
@@ -74,7 +77,35 @@ func (tdh *TodoHandler) GetTodo(c *gin.Context) {
 
 }
 
-func (tdh *TodoHandler) DeleteTodo(c *gin.Context) {
+// FIXME  注意在Repo层 又实现了查询逻辑 这里有重复查询的问题！
+func (tdh *TodoHandler) Update(c *gin.Context) {
+	// 注意Params 和 Query的 区别
+	// idStr := c.Params.ByName("id")
+	idStr := c.Query("id")
+	idInt, _ := strconv.Atoi(idStr)
+	// id := int32(idInt)
+
+	var todo *demo.Todo
+
+	todo, err := tdh.ts.Get(idInt)
+	if err != nil {
+		c.JSON(404, gin.H{"error": "not found " + strconv.Itoa(idInt)})
+		return
+	}
+
+	c.Bind(&todo)
+
+	_, err2 := tdh.ts.Update(idInt, todo)
+
+	if err2 != nil {
+		c.JSON(http.StatusFound, err2)
+	}
+
+	c.JSON(http.StatusAccepted, gin.H{"error": "nil", "msg": "update success"})
+
+}
+
+func (tdh *TodoHandler) Delete(c *gin.Context) {
 	//	panic("yayyayyayy")
 	// idStr := c.Params.ByName("id")
 	idStr := c.Query("id")
@@ -83,7 +114,7 @@ func (tdh *TodoHandler) DeleteTodo(c *gin.Context) {
 	fmt.Println("请求id是： " + idStr)
 	// var todo demo.Todo
 
-	err := tdh.ts.DeleteTodo(idInt)
+	_, err := tdh.ts.Delete(idInt)
 	if err != nil {
 		c.JSON(404, gin.H{"error": err})
 		return

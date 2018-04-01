@@ -57,6 +57,10 @@ https://blog.learngoprogramming.com/code-organization-tips-with-packages-d30de0d
 ### 反射
 https://blog.golang.org/laws-of-reflection
 
+### 结构体
+https://github.com/fatih/gomodifytags
+https://github.com/fatih/structs
+https://github.com/fatih/structtag
 
 ### db
 

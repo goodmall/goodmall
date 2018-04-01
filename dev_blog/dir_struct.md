@@ -20,3 +20,5 @@
 
 - https://hackernoon.com/basic-monorepo-design-in-go-e9ba1cb8e4e6
 gogs项目结构
+
+https://larry-price.com/blog/2015/06/25/architecture-for-a-golang-web-app/

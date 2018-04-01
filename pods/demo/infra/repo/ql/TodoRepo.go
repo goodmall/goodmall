@@ -25,7 +25,7 @@ import (
 )
 
 // Ensure 接口被实现了.
-var _ demo.TodoRepo = &todoRepo{}
+// var _ demo.TodoRepo = &todoRepo{}
 
 // use this https://upper.io/db.v3/ql as our orm lib
 type todoRepo struct {

@@ -125,6 +125,39 @@ http://idiomaticgo.com/post/best-practice/server-project-layout/
 根据可测试性 领域模型是从仓储中获取的  
 [初探领域驱动设计--Repository在DDD中的应用](http://www.uml.org.cn/zjjs/201412112.asp)
 
+[repository-is-dead-long-live-repository](http://codebetter.com/gregyoung/2009/04/23/repository-is-dead-long-live-repository/)
+>  but if you apply command and query separation you will have almost none (read: none) read methods on your repositories in your domain.
+
+[ddd-the-generic-repository](http://codebetter.com/gregyoung/2009/01/16/ddd-the-generic-repository/)
+
+~~~C#
+
+public interface ICustomerRepository {
+    IEnumerable<Customer> GetCustomersWithFirstNameOf(string _Name);
+}
+
+In the customer repository composition would be used.
+
+Public class CustomerRepository {
+    private Repository<Customer> internalGenericRepository;
+    Public IEnumerable<Customer> GetCustomersWithFirstNameOf(string _Name) {
+         internalGenericRepository.FetchByQueryObject(new CustomerFirstNameOfQuery(_Name)); //could be hql or whatever
+     }
+}
+~~~
+
+from[domain-driven-design-inject](http://debasishg.blogspot.com/2007/02/domain-driven-design-inject.html)
+>    The main differences between the Repository and the DAO are that :
+
+	The DAO is at a lower level of abstraction than the Repository and can contain plumbing codes to pull out data from the database. We have one DAO per database table, but one repository per domain type or aggregate.
+	
+	The contracts provided by the Repository are purely "domain centric" and speak the same domain language.
+
+>	The generic layering works like the following :
+a) The Struts Action is the Controller layer of your web application. It uses the Domain Service layer for all its action logic. 
+b) The Domain Service layer is at a coarser level and uses domain entities and Repositories for implementation. The Domain Services have Repositories injected through some sort of DI.
+c) The domain entities, again can have repositories injected to perform domain logic.
+	
 
 ### 关于infrastructure 基础设施层
 

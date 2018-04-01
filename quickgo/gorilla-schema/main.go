@@ -14,6 +14,8 @@ type Person struct {
 	Admin bool   `schema:"-"`    // this field is never set
 }
 
+// see https://github.com/google/go-querystring/issues/7
+// see https://stackoverflow.com/questions/40564842/convert-url-query-map-of-slices-to-struct-golang
 func MyHandler(w http.ResponseWriter, r *http.Request) {
 
 	var person Person
@@ -30,6 +32,11 @@ func MyHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, string(b)) //这个写入到w的是输出到客户端的
+
+	/**
+		   w.Header().Set("Content-Type", "application/json")
+	    json.NewEncoder(w).Encode(employeeStruct)
+	*/
 }
 
 func main() {

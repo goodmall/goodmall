@@ -27,10 +27,9 @@ func init() {
 }
 
 // 相当于另一种方式写了个表定义哦！
-type MyTodo struct {
-	gorm.Model
-	Id          int    `json:"id"` // int32
-	Created     int32  `json:"created"`
+type Todo struct {
+	ID          uint   `gorm:"primary_key"`
+	Created     int    `json:"created"`
 	Status      string `json:"status"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
@@ -49,6 +48,7 @@ type User2 struct {
 }
 
 // 确保里面的代码只执行一次哦
+// 可以参看 sync.Once.Do(func{}) 方法
 func InitContext() {
 	// SEARCH how-to-know-if-a-variable-of-arbitrary-type-is-zero-in-golang
 	if _isInited == true {
@@ -88,7 +88,7 @@ func Up20180328193636(tx *sql.Tx) error {
 	println(" init todo ")
 
 	// Migrate the schema
-	db.AutoMigrate(&User2{})
+	db.AutoMigrate(&Todo{})
 
 	// This code is executed when the migration is applied.
 	return nil
@@ -99,7 +99,7 @@ func Down20180328193636(tx *sql.Tx) error {
 
 	println("hiii down!")
 
-	db.DropTableIfExists(&User2{})
+	db.DropTableIfExists(&Todo{})
 
 	// This code is executed when the migration is rolled back.
 	return nil
