@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"github.com/goodmall/goodmall/base"
+	// "github.com/goodmall/goodmall/base"
 
 	"github.com/goodmall/goodmall/pods/demo"
 
@@ -34,9 +34,9 @@ func (interactor *todoInteractor) Help() string {
 func (itr *todoInteractor) Get(id int) (*demo.Todo, error) {
 	return itr.TodoRepo.Load(id)
 }
-func (itr *todoInteractor) Query(q base.Query) ([]demo.Todo, error) {
+func (itr *todoInteractor) Query(q demo.TodoSearch /*q base.Query*/) ([]demo.Todo, error) {
 
-	return itr.TodoRepo.Query(base.Query{})
+	return itr.TodoRepo.Query(q)
 	// return []*demo.Todo{}, nil
 }
 

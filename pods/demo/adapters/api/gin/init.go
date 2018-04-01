@@ -28,6 +28,7 @@ func InitPod(engine *gin.Engine, env app.Env) {
 	if err != nil {
 		panic("failed to connect database" + app.Config.DSNMysql)
 	}
+	db.LogMode(true) // 开启日志 生产环境中可以关闭
 	tr := mysql.NewTodoRepo(db)
 	ti := usecase.NewTodoInteractor(tr, env.EventBus)
 
@@ -35,6 +36,7 @@ func InitPod(engine *gin.Engine, env app.Env) {
 	// var _ TodoHandler = th
 
 	r.GET("/todo", th.Get)
+	r.GET("/todo/count", th.Count)
 	r.POST("/todo", th.Create)
 	r.PUT("/todo", th.Update)
 	r.GET("/todos", th.Query)

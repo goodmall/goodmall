@@ -1,8 +1,6 @@
 package demo
 
-import (
-	"github.com/goodmall/goodmall/base"
-)
+// "github.com/goodmall/goodmall/base"
 
 // TodoInteractor represents a service for managing todos.
 // alias : TodoService
@@ -19,7 +17,8 @@ type TodoInteractor interface {
 	//
 	Get(id int) (*Todo, error)
 
-	Query(q base.Query) ([]Todo, error)
+	// Query(q base.Query) ([]Todo, error) //  签名修改为使用搜索模型
+	Query(q TodoSearch) ([]Todo, error)
 
 	Count() (int, error)
 }

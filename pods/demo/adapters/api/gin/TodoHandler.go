@@ -2,6 +2,7 @@ package gin
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -11,7 +12,9 @@ import (
 	"github.com/goodmall/goodmall/pods/demo"
 	// "github.com/goodmall/goodmall/pods/demo/usecase"
 	// "github.com/goodmall/goodmall/pods/demo/usecase"
-	"github.com/goodmall/goodmall/base"
+	// "github.com/goodmall/goodmall/base"
+
+	"github.com/gorilla/schema"
 )
 
 // TODO  to be continue
@@ -22,8 +25,18 @@ type TodoHandler struct {
 
 func (tdh *TodoHandler) Query(c *gin.Context) {
 	// c.Request.
-	//  借鉴yii的 其实query 可以是一个模型 跟常规model类似 或者就更泛化点  map[string]string
-	todos, err := tdh.ts.Query(base.Query{})
+	//c.Request.URL.Query()
+	//  借鉴yii的 其实query 可以是一个模型 跟常规model类似 或者就更泛化点  map[string]string 从url的query部分解析出来的
+	sm := demo.TodoSearch{}
+
+	decoder := schema.NewDecoder()
+	if err := decoder.Decode(&sm, c.Request.URL.Query()); err != nil {
+		fmt.Println(err)
+		// return
+	}
+	log.Printf("%#v \n", sm)
+
+	todos, err := tdh.ts.Query(sm)
 	if err != nil {
 		panic(err)
 	}
@@ -74,6 +87,25 @@ func (tdh *TodoHandler) Get(c *gin.Context) {
 		}
 	*/
 	c.JSON(http.StatusFound, todo)
+
+}
+
+func (tdh *TodoHandler) Count(c *gin.Context) {
+
+	cnt, err := tdh.ts.Count()
+	if err != nil {
+		c.JSON(404, gin.H{"error": "count errer !"})
+		return
+	}
+	/*
+		if tdh.ts.First(&todo, id).RecordNotFound()false {
+			c.JSON(404, gin.H{"error": "not found " + strconv.Itoa(int(id))})
+		} else {
+			todo = demo.Todo{Description: "hiiii"}
+			c.JSON(200, todo)
+		}
+	*/
+	c.JSON(http.StatusFound, cnt)
 
 }
 

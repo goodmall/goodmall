@@ -16,7 +16,7 @@ import (
 
 	_ "os"
 
-	"github.com/goodmall/goodmall/base"
+	// "github.com/goodmall/goodmall/base"
 	"github.com/goodmall/goodmall/pods/demo"
 
 	"github.com/jinzhu/copier"
@@ -112,11 +112,15 @@ func (rp *todoRepo) Load(id int) (*demo.Todo, error) {
 // Query(spec Specification)
 // 实现方法 可以参考 https://www.sohamkamani.com/blog/2017/10/18/golang-adding-database-to-web-application/
 // 有人用string来表示查询串  这个有点跟url中的query串类似 ：?page=0&per-page=10&name=someName&age=10&title=...
-func (rp *todoRepo) Query(criteria base.Query) ([]demo.Todo, error) {
+func (rp *todoRepo) Query(q demo.TodoSearch /* criteria base.Query*/) ([]demo.Todo, error) {
 
 	rslt := []demo.Todo{}
 
-	rp.db.Find(&rslt)
+	// rp.db.Find(&rslt)
+	// 带条件查询
+	fmt.Printf("search model : %#v \n\n", q)
+
+	rp.db.Where(&q).Find(&rslt)
 
 	return rslt, nil
 }
@@ -124,6 +128,8 @@ func (rp *todoRepo) Query(criteria base.Query) ([]demo.Todo, error) {
 // ## Extra Behavior
 // Size()
 func (rp *todoRepo) Count() (int, error) {
-	return 0, nil
+	cnt := 0
+	rp.db.Model(&Todo{}). /*.Where("id > ?", 0)*/ Count(&cnt)
+	return cnt, nil
 
 }
