@@ -34,9 +34,9 @@ func (interactor *todoInteractor) Help() string {
 func (itr *todoInteractor) Get(id int) (*demo.Todo, error) {
 	return itr.TodoRepo.Load(id)
 }
-func (itr *todoInteractor) Query(q demo.TodoSearch /*q base.Query*/) ([]demo.Todo, error) {
+func (itr *todoInteractor) Query(sm demo.TodoSearch, offset, limit int) ([]demo.Todo, error) {
 
-	return itr.TodoRepo.Query(q)
+	return itr.TodoRepo.Query(sm, offset, limit)
 	// return []*demo.Todo{}, nil
 }
 
@@ -74,6 +74,6 @@ func (itr *todoInteractor) Delete(id int) (*demo.Todo, error) {
 
 }
 
-func (itr *todoInteractor) Count() (int, error) {
-	return itr.TodoRepo.Count()
+func (itr *todoInteractor) Count(sm demo.TodoSearch) (int, error) {
+	return itr.TodoRepo.Count(sm)
 }

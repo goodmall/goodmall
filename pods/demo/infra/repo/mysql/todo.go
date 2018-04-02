@@ -50,6 +50,7 @@ func NewTodoRepo(db *gorm.DB) demo.TodoRepo {
 }
 
 func (rp *todoRepo) Create(td *demo.Todo) error {
+
 	td2 := Todo{}
 
 	copier.Copy(&td2, td)
@@ -115,25 +116,26 @@ func (rp *todoRepo) Load(id int) (*demo.Todo, error) {
 // Query(spec Specification)
 // 实现方法 可以参考 https://www.sohamkamani.com/blog/2017/10/18/golang-adding-database-to-web-application/
 // 有人用string来表示查询串  这个有点跟url中的query串类似 ：?page=0&per-page=10&name=someName&age=10&title=...
-func (rp *todoRepo) Query(q demo.TodoSearch /* criteria base.Query*/) ([]demo.Todo, error) {
+func (rp *todoRepo) Query(sm demo.TodoSearch, offset, limit int) ([]demo.Todo, error) {
 
 	rslt := []demo.Todo{}
 
 	// rp.db.Find(&rslt)
 	// 带条件查询
-	fmt.Printf("search model : %#v \n\n", q)
+	fmt.Printf("search model : %#v \n\n", sm)
 
 	// 构造条件子句
-	sql, args, _ := ToSQL(
-		And(
-			FilterCond(Like{"title", q.Title}),
-			FilterCond(Like{"description", q.Description})))
+	sql, args := rp.buildSearchCond(sm)
 
 	// fmt.Println(sql, args)
 	if len(sql) != 0 {
-		rp.db.Where(sql, args...).Find(&rslt)
+		rp.db.Where(sql, args...).
+			Offset(offset).Limit(limit).
+			Find(&rslt)
 	} else {
-		rp.db.Where(&q).Find(&rslt)
+		rp.db.Where(&sm).
+			Offset(offset).Limit(limit).
+			Find(&rslt) // NOTE 表名隐藏在Find 参数的类型中哦 因为是复数 所以用元素类型 即demo.Todo 来推断表名
 	}
 
 	return rslt, nil
@@ -141,9 +143,30 @@ func (rp *todoRepo) Query(q demo.TodoSearch /* criteria base.Query*/) ([]demo.To
 
 // ## Extra Behavior
 // Size()
-func (rp *todoRepo) Count() (int, error) {
+func (rp *todoRepo) Count(sm demo.TodoSearch) (int, error) {
+
 	cnt := 0
-	rp.db.Model(&Todo{}). /*.Where("id > ?", 0)*/ Count(&cnt)
+
+	// 构造条件子句
+	sql, args := rp.buildSearchCond(sm)
+
+	if len(sql) != 0 {
+		rp.db.Model(&Todo{}).Where(sql, args...).Count(&cnt)
+	} else {
+		rp.db.Model(&Todo{}).Count(&cnt)
+	}
+
 	return cnt, nil
+
+}
+
+func (rp *todoRepo) buildSearchCond(sm demo.TodoSearch) (sql string, args []interface{}) {
+	// 构造条件子句
+	sql, args, _ = ToSQL(
+		And(
+			FilterCond(Like{"title", sm.Title}),
+			FilterCond(Like{"description", sm.Description})))
+
+	return sql, args
 
 }

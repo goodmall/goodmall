@@ -14,6 +14,8 @@ import (
 	// "github.com/goodmall/goodmall/pods/demo/usecase"
 	// "github.com/goodmall/goodmall/base"
 
+	"github.com/goodmall/goodmall/base/api"
+
 	"github.com/gorilla/schema"
 )
 
@@ -36,12 +38,23 @@ func (tdh *TodoHandler) Query(c *gin.Context) {
 	}
 	log.Printf("%#v \n", sm)
 
-	todos, err := tdh.ts.Query(sm)
+	// 构造分页
+	cnt, err := tdh.ts.Count(sm)
 	if err != nil {
 		panic(err)
 	}
+	paginatedList := api.GetPaginatedListFromRequest(c.Request.URL, cnt)
 
-	c.JSON(200, todos)
+	items, err := tdh.ts.Query(sm, paginatedList.Page, paginatedList.PerPage)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("%#v \n", paginatedList)
+
+	paginatedList.Items = items
+
+	// c.JSON(200, items)
+	c.JSON(200, paginatedList)
 
 }
 
@@ -92,7 +105,17 @@ func (tdh *TodoHandler) Get(c *gin.Context) {
 
 func (tdh *TodoHandler) Count(c *gin.Context) {
 
-	cnt, err := tdh.ts.Count()
+	sm := demo.TodoSearch{}
+	decoder := schema.NewDecoder()
+	if err := decoder.Decode(&sm, c.Request.URL.Query()); err != nil {
+		fmt.Println(err)
+		// return
+	}
+	log.Printf("%#v \n", sm)
+	//                    构造搜索模型
+	// -------------------------------------------------------- ++|
+
+	cnt, err := tdh.ts.Count(sm)
 	if err != nil {
 		c.JSON(404, gin.H{"error": "count errer !"})
 		return
