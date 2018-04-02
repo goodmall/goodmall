@@ -7,6 +7,9 @@ package demo
 //  |Persisted-Oriented Repositories()）
 //
 // 在ddd中 只有聚合根才有对应的Repo 并非所有实体 领域模型都有对应的Repo！多个实体也可以只有一个Repo
+// 接口设计 和url设计很相似 关系型的任务和嵌套资源的url路径类似 如GET home.com/book-category/2/books
+//    对应的接口签名：BookRepo::GetBooksByCategory(bc BookCategory) []Books
+//        注意参数  ...(bc BookCategory) 和另一种设计 ...GetBooksByCategory(cateId int) 的区别
 type TodoRepo interface {
 
 	//Store(td *Todo) error
@@ -65,7 +68,7 @@ service层 使用  但也是可以被领域对象使用的！）
 采用继承手段 但我们不需要我们用不上的接口 对于其他通用操作仍旧可以使用泛化的仓储实现）
 */
 /**
-
+### 下面是另一波人的认知：
 查询风格跟DAO的不同  当然有人也设计成类似DAO的那样  主要看查询性质方法如：FindByXxx|GetByXxx 系列方法
 因为出现在接口上 如果有很多实现类（比如针对不同的DB存储）在增加此类方法时 需要修改的类数量会很快增长
 包括单元测试需要变动的地方也很多

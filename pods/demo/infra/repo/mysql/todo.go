@@ -22,6 +22,9 @@ import (
 	"github.com/jinzhu/copier"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+
+	. "github.com/go-xorm/builder"
+	. "github.com/goodmall/goodmall/base/xorm/builder"
 )
 
 type Todo struct {
@@ -120,7 +123,18 @@ func (rp *todoRepo) Query(q demo.TodoSearch /* criteria base.Query*/) ([]demo.To
 	// 带条件查询
 	fmt.Printf("search model : %#v \n\n", q)
 
-	rp.db.Where(&q).Find(&rslt)
+	// 构造条件子句
+	sql, args, _ := ToSQL(
+		And(
+			FilterCond(Like{"title", q.Title}),
+			FilterCond(Like{"description", q.Description})))
+
+	// fmt.Println(sql, args)
+	if len(sql) != 0 {
+		rp.db.Where(sql, args...).Find(&rslt)
+	} else {
+		rp.db.Where(&q).Find(&rslt)
+	}
 
 	return rslt, nil
 }
