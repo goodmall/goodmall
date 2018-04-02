@@ -17,12 +17,15 @@ import (
 //      对应的条件构造：
 
 /*			// 构造条件子句
+
 sql, args, _ := ToSQL(
 And(
 	FilterCond(Like{"title", q.Title}),
 	FilterCond(Like{"description", q.Description})))
 
-	其中 q 是一个查询结构体 可以使用 "github.com/gorilla/schema" 库从url请求体来填充： Request.URL.Query()
+因为请求中description并没有赋值  最终生成的sql片段中 是不含description部分的
+
+其中 q 是一个查询结构体 可以使用 "github.com/gorilla/schema" 库从url请求体来填充： Request.URL.Query()
 
 	***/
 type filterCond struct {
