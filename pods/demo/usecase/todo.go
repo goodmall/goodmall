@@ -34,9 +34,9 @@ func (interactor *todoInteractor) Help() string {
 func (itr *todoInteractor) Get(id int) (*demo.Todo, error) {
 	return itr.TodoRepo.Load(id)
 }
-func (itr *todoInteractor) Query(sm demo.TodoSearch, offset, limit int) ([]demo.Todo, error) {
+func (itr *todoInteractor) Query(sm demo.TodoSearch, offset, limit int, sort string) ([]demo.Todo, error) {
 
-	return itr.TodoRepo.Query(sm, offset, limit)
+	return itr.TodoRepo.Query(sm, offset, limit, sort)
 	// return []*demo.Todo{}, nil
 }
 

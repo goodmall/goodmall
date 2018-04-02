@@ -28,7 +28,7 @@ type TodoRepo interface {
 	// Query(spec Specification)
 	// 实现方法 可以参考 https://www.sohamkamani.com/blog/2017/10/18/golang-adding-database-to-web-application/
 	// 有人用string来表示查询串  这个有点跟url中的query串类似 ：?page=0&per-page=10&name=someName&age=10&title=...
-	Query(sm TodoSearch, offset, limit int) ([]Todo, error)
+	Query(sm TodoSearch, offset, limit int, sort string) ([]Todo, error)
 
 	// ## Extra Behavior
 	// Size()

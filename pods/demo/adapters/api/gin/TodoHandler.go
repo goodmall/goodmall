@@ -45,7 +45,11 @@ func (tdh *TodoHandler) Query(c *gin.Context) {
 	}
 	paginatedList := api.GetPaginatedListFromRequest(c.Request.URL, cnt)
 
-	items, err := tdh.ts.Query(sm, paginatedList.Page, paginatedList.PerPage)
+	// 提取排序字段 形如：&sort=foo , bar desc
+	sortStr := c.Query("sort")
+	fmt.Println("\n sort from query: ", sortStr)
+
+	items, err := tdh.ts.Query(sm, paginatedList.Page, paginatedList.PerPage, sortStr)
 	if err != nil {
 		panic(err)
 	}

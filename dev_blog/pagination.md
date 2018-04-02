@@ -1,0 +1,1 @@
+https://cloud.google.com/apis/design/design_patterns#list_pagination

@@ -18,7 +18,7 @@ type TodoInteractor interface {
 	Get(id int) (*Todo, error)
 
 	// Query(q base.Query) ([]Todo, error) //  签名修改为使用搜索模型
-	Query(sm TodoSearch, offset, limit int) ([]Todo, error)
+	Query(sm TodoSearch, offset, limit int, sort string) ([]Todo, error)
 
 	Count(sm TodoSearch) (int, error)
 }

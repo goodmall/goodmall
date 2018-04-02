@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"strings"
 	// "fmt"
 	// "log"
 	_ "math/rand"
@@ -115,9 +116,9 @@ func (rp *todoRepo) Load(id int) (*demo.Todo, error) {
 
 // Query(spec Specification)
 // 实现方法 可以参考 https://www.sohamkamani.com/blog/2017/10/18/golang-adding-database-to-web-application/
-// 有人用string来表示查询串  这个有点跟url中的query串类似 ：?page=0&per-page=10&name=someName&age=10&title=...
-func (rp *todoRepo) Query(sm demo.TodoSearch, offset, limit int) ([]demo.Todo, error) {
-
+// 有人用string来表示查询串  这个有点跟url中的query串类似 ：?page=0&per-page=10&name=someName&age=10&title=...&sort=key1,key2 desc,key3
+func (rp *todoRepo) Query(sm demo.TodoSearch, offset, limit int, sort string) ([]demo.Todo, error) {
+	fmt.Println("sort is :", sort)
 	rslt := []demo.Todo{}
 
 	// rp.db.Find(&rslt)
@@ -127,14 +128,20 @@ func (rp *todoRepo) Query(sm demo.TodoSearch, offset, limit int) ([]demo.Todo, e
 	// 构造条件子句
 	sql, args := rp.buildSearchCond(sm)
 
+	if len(strings.Trim(sort, " ")) == 0 {
+		sort = "id desc"
+	}
+
 	// fmt.Println(sql, args)
 	if len(sql) != 0 {
 		rp.db.Where(sql, args...).
 			Offset(offset).Limit(limit).
+			Order(sort).
 			Find(&rslt)
 	} else {
 		rp.db.Where(&sm).
 			Offset(offset).Limit(limit).
+			Order(sort).
 			Find(&rslt) // NOTE 表名隐藏在Find 参数的类型中哦 因为是复数 所以用元素类型 即demo.Todo 来推断表名
 	}
 

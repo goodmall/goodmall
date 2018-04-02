@@ -26,6 +26,7 @@ func GetMainEngine() *gin.Engine {
 
 	//<========================================================================|
 	//                      加载系统配置文件  并实例化系统级组件
+	//  配置感觉是静态的 如:app.DNS 通过属性来获取   组件可以通过方法来获取  比如app.DB()  一动一静 阴阳之道
 
 	configDir := ProjectHomeDir() + "/config"
 	// load application configurations
