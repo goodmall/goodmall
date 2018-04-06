@@ -39,7 +39,7 @@ type Todo struct {
 // Ensure 接口被实现了.
 var _ demo.TodoRepo = &todoRepo{}
 
-//
+// gorm.xxx().xxx().Error 大部分的gorm方法  最后可以提取错误的
 type todoRepo struct {
 	db *gorm.DB
 }

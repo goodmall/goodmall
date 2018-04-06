@@ -1,0 +1,7 @@
+{
+  "name": "goodmall",
+  "version": "0.0.1",
+  "description": "apiDoc basic example",
+  "title": "Custom apiDoc browser title",
+  "url" : "https://api.github.com/v1"
+}

@@ -22,4 +22,5 @@ import:
 
 - package: github.com/gavv/httpexpect
 - package: github.com/gorilla/schema
+- package: github.com/casbin/casbin
 
