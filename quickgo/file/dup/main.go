@@ -1,6 +1,7 @@
 package main
 
 // @SEE https://xojoc.pw/justcode/golang-file-tree-traversal.html
+// @see https://flaviocopes.com/go-list-files/
 
 import (
 	"crypto/sha512"
@@ -73,4 +74,43 @@ func printFile(ignoreDirs []string) filepath.WalkFunc {
 		fmt.Println(path)
 		return nil
 	}
+}
+
+/**
+log.SetFlags(log.Lshortfile)
+	dir := os.Args[1]
+	info, err := os.Lstat(dir)
+	if err != nil {
+		log.Fatal(err)
+	}
+	du(dir, info)
+
+*/
+func filezize(currentPath string, info os.FileInfo) int64 {
+	size := info.Size()
+	if !info.IsDir() {
+		return size
+	}
+
+	dir, err := os.Open(currentPath)
+	if err != nil {
+		log.Print(err)
+		return size
+	}
+	defer dir.Close()
+
+	fis, err := dir.Readdir(-1)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, fi := range fis {
+		if fi.Name() == "." || fi.Name() == ".." {
+			continue
+		}
+		size += filezize(currentPath+"/"+fi.Name(), fi)
+	}
+
+	fmt.Printf("%d %s\n", size, currentPath)
+
+	return size
 }
