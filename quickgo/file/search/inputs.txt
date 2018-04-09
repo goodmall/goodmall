@@ -1,0 +1,16 @@
+// @SubApi Test API [/testapi]
+
+// @APIVersion 1.0.0
+// @APITitle Swagger Example API
+// @APIDescription Swagger Example API
+// @BasePath http://127.0.0.1:3000/
+// @Contact varyous@gmail.com
+// @TermsOfServiceUrl http://yvasiyarov.com/
+// @License BSD
+// @LicenseUrl http://yvasiyarov.com/
+
+目的是快速识别出 该文件是否满足我们的要求 
+
+- 在api-doc 生成中 我们需要快速识别出该文件是否还有我们需要的 注解源
+
+参考 https://github.com/yvasiyarov/swagger/blob/master/example/web/main.go
