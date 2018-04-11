@@ -59,3 +59,7 @@ for !strings.HasSuffix(wd, "<yourProjectDirName>") {
 raw, err := ioutil.ReadFile(fmt.Sprintf("%s/src/conf/conf.dev.json", wd))
 
 ~~~
+
+##  支持多环境配置
+根据环境变量 选择加载指定的配置文件
+可以参考这个做法： https://github.com/brainattica/golang-jwt-authentication-api-sample/blob/master/settings/settings.go
