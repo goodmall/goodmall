@@ -31,6 +31,9 @@ func (c Credential) Validate() error {
 	)
 }
 
+/**
+*     TODO to be continue : https://medium.com/@raul_11817/securing-golang-api-using-json-web-token-jwt-2dc363792a48
+**/
 type AuthController struct {
 }
 
@@ -42,6 +45,8 @@ func (auth *AuthController) Login(c *gin.Context) {
 
 	log.Printf("%#v \n", m)
 
+	// 验证 用户输入
+	// TODO 做用户名唯一性检测
 	err := m.Validate()
 	if err != nil {
 

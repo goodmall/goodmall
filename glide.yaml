@@ -24,3 +24,6 @@ import:
 - package: github.com/gorilla/schema
 - package: github.com/casbin/casbin
 
+- package: github.com/olivere/elastic
+  version: ^3.0
+

@@ -45,6 +45,15 @@ type todoRepo struct {
 }
 
 func NewTodoRepo(db *gorm.DB) demo.TodoRepo {
+	//https://github.com/moul/cleanarch/blob/master/example/app/repos/sprints/gorm/repo.go
+	/**
+	        老外竟然这样玩！
+
+	// create table if needed
+		db.AutoMigrate(&issueModel{})
+		db.AutoMigrate(&sprintModel{})
+
+	*/
 	return &todoRepo{
 		db: db,
 	}

@@ -29,6 +29,10 @@
 	- [uniplaces](https://geeks.uniplaces.com/)
 	- [Peter Bourgon](http://howistart.org/posts/go/1/index.html)
 	- [justforfunc](https://github.com/campoy/justforfunc)
+	
+	
+- BOOKS
+	- [Build web application with Golang](https://legacy.gitbook.com/book/astaxie/build-web-application-with-golang/details)
 
 ## 专题
 
@@ -73,6 +77,10 @@ https://github.com/golang/mock
 
 https://github.com/go-ego/riot
 [wukong](https://github.com/huichen/wukong)
+
+## WEB
+
+中间件： https://github.com/urfave/negroni
 
 ### 测试
 

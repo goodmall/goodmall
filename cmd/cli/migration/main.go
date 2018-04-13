@@ -16,7 +16,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	_ "github.com/ziutek/mymysql/godrv"
 
-	// 全局依赖 尽量放其他包的前面
+	// 全局依赖 尽量放其他包的前面 (gofmt 会自动调整依赖顺序的！)
 	"github.com/goodmall/goodmall/app"
 
 	//  // Invoke init() functions within migrations pkg.

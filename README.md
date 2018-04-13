@@ -20,6 +20,14 @@ mvc
 ~~~
 
 
+## 运行
+
+
+
+>  $GOPATH\github.com\goodmall\goodmall\cmd\api\gin>go run main.go
+
+
+
 ## 注意！
 
 各位亲 先不要急着fork  等把 user模块结构最终定下来了 再通知大家哦！

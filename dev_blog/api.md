@@ -22,3 +22,8 @@ Pagination, Filtering, and Sorting
 书籍
 [http-api-design](https://www.gitbook.com/book/geemus/http-api-design/details)
 
+
+## 博客网站
+https://blog.rapid7.com/tag/api
+
+

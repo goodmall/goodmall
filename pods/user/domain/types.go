@@ -1,7 +1,7 @@
 package domain
 
 //User data
-type User struct {
+type Userx struct {
 	Username string `json:"username"`
 	Password string `json:"-"`
 	// ID entity.ID `json:"id" bson:"_id,omitempty"`

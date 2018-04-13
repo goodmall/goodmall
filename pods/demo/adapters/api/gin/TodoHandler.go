@@ -1,3 +1,4 @@
+// @SubApi Test API [/testapi]
 package gin
 
 import (
@@ -132,6 +133,11 @@ func (tdh *TodoHandler) Get(c *gin.Context) {
 
 }
 
+type APIError struct {
+	ErrorCode    int
+	ErrorMessage string
+}
+
 func (tdh *TodoHandler) Count(c *gin.Context) {
 
 	sm := demo.TodoSearch{}
@@ -162,6 +168,14 @@ func (tdh *TodoHandler) Count(c *gin.Context) {
 }
 
 // FIXME  注意在Repo层 又实现了查询逻辑 这里有重复查询的问题！
+// Put ...
+// @Title Put
+// @Description update the {{controllerName}}
+// @Param	id		path 	string	true		"The id you want to update"
+// @Param	body		body 	string	true		"body  content"
+// @Success 200 string ok
+// @Failure 403 :id is not int
+// @router /:id [put]
 func (tdh *TodoHandler) Update(c *gin.Context) {
 	// 注意Params 和 Query的 区别
 	// idStr := c.Params.ByName("id")
@@ -189,6 +203,12 @@ func (tdh *TodoHandler) Update(c *gin.Context) {
 
 }
 
+// @Title delete
+// @Description delete the user
+// @Param	uid		path 	string	true		"The uid you want to delete"
+// @Success 200 {string} delete success!
+// @Failure 403 uid is empty
+// @router /todo/:uid [DELETE]
 func (tdh *TodoHandler) Delete(c *gin.Context) {
 	//	panic("yayyayyayy")
 	// idStr := c.Params.ByName("id")
