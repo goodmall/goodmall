@@ -1,0 +1,16 @@
+# 这是一个TOML文件 
+# @see https://github.com/toml-lang/toml
+
+title = "TOML Example"
+
+adminEmail = "yiqing@qq.com"
+
+[owner]
+name = "Lance Uppercut"
+dob = 1979-05-27T07:32:00-08:00 # 日期是一等公民
+
+[database]
+server = "192.168.1.1"
+ports = [ 8001, 8001, 8002 ]
+connection_max = 5000
+enabled = true

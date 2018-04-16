@@ -70,6 +70,8 @@ https://github.com/fatih/structtag
 
 http://www.alexedwards.net/blog/organising-database-access
 
+github.com/coreos/bbolt
+
 ### mock
 https://github.com/golang/mock
 
@@ -77,6 +79,7 @@ https://github.com/golang/mock
 
 https://github.com/go-ego/riot
 [wukong](https://github.com/huichen/wukong)
+[bleve](https://github.com/blevesearch/bleve)
 
 ## WEB
 

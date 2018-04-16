@@ -1,0 +1,18 @@
+# 这是一个TOML文件 
+# @see https://github.com/toml-lang/toml
+
+title = "table info for your development database "
+adminEmail = "yiqing_95@qq.com"
+
+
+
+[db]
+driver = "mysql"
+dataSourceName = "root:@/cxtx_mall?charset=utf8"  # 格式需要参考xorm
+
+
+#[database]
+#server = "192.168.1.1"
+#ports = [ 8001, 8001, 8002 ]
+#connection_max = 5000
+#enabled = true
